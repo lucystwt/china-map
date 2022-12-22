@@ -1,0 +1,20 @@
+.container {
+  @apply z-10;
+}
+
+.list {
+  @apply flex items-center gap-2;
+}
+
+.item > span {
+  @apply cursor-pointer;
+}
+
+.item > span:hover {
+  @apply text-blue-500;
+}
+
+.item:not(:last-of-type)::after {
+  content: '/';
+  @apply ml-2;
+}
