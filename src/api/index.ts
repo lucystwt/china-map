@@ -16,9 +16,9 @@ export type Area = {
 }
 
 export async function getGeoJson(adcode: number | string) {
-  return request<unknown, Record<string, any>>(`/json/geo/${adcode}.json`)
+  return request.get<Record<string, any>>(`/json/geo/${adcode}.json`)
 }
 
 export async function getAllArea() {
-  return request<unknown, Area[]>('/json/all-area.json')
+  return request.get<Area[]>('/json/all-area.json')
 }
