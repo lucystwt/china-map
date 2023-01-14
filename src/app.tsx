@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState } from "react"
 
-import ChartMap from './components/chart-map'
-import Navbar from './components/navbar'
-import useArea from './hooks/area'
+import ChartMap from "./components/chart-map"
+import Navbar from "./components/navbar"
+import useArea from "./hooks/area"
 
 export default function App() {
   const { adCodeToAreaMap } = useArea()
@@ -12,7 +12,7 @@ export default function App() {
     const area = adCodeToAreaMap.get(code)
     return {
       key: code,
-      text: area ? area.name : '未知城市',
+      text: area ? area.name : "未知城市",
     }
   })
 

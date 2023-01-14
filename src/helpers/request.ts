@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios"
 
 const instance = axios.create({})
 
@@ -51,7 +51,7 @@ const request: Request = <T, D>(
   config?: AxiosRequestConfig<D>
 ) =>
     requestHandler<T, D>(
-      typeof payload === 'string' ? instance(payload, config) : instance(payload)
+      typeof payload === "string" ? instance(payload, config) : instance(payload)
     )
 request.get = (url, config) => requestHandler(instance.get(url, config))
 request.post = (url, data, config) =>

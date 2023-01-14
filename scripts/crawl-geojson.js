@@ -1,24 +1,24 @@
 /**
  * 从阿里云抓取各区域的 geojson
  */
-import { readdir, readFile, rm, writeFile } from 'node:fs/promises'
-import { createRequire } from 'node:module'
-import { dirname, extname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { readdir, readFile, rm, writeFile } from "node:fs/promises"
+import { createRequire } from "node:module"
+import { dirname, extname, resolve } from "node:path"
+import { fileURLToPath } from "node:url"
 
-import axios from 'axios'
+import axios from "axios"
 
 function getGeoPath() {
   const __filename = fileURLToPath(import.meta.url)
   const __dirname = dirname(__filename)
-  const geoPath = resolve(__dirname, '../public/json/geo')
+  const geoPath = resolve(__dirname, "../public/json/geo")
   return geoPath
 }
 
 function getHasGeoAreas() {
   const _require = createRequire(import.meta.url)
-  const list = _require('../public/json/all-area.json')
-  const filteredList = list.filter((item) => item.level !== 'district')
+  const list = _require("../public/json/all-area.json")
+  const filteredList = list.filter((item) => item.level !== "district")
   return filteredList
 }
 
@@ -36,7 +36,7 @@ async function prepareGeoFiles() {
       const file = await readFile(filepath)
       const fileExtname = extname(filepath)
       // 空文件就删除
-      if (file.byteLength <= 0 || !fileExtname.includes('json')) {
+      if (file.byteLength <= 0 || !fileExtname.includes("json")) {
         await rm(filepath)
       } else {
         existsFiles.push(f)
@@ -47,7 +47,7 @@ async function prepareGeoFiles() {
   }
   const hasGeoAreas = await getHasGeoAreas()
   const requestList = hasGeoAreas.filter(
-    (item) => !existsFiles.find((f) => f.includes(item.adcode + ''))
+    (item) => !existsFiles.find((f) => f.includes(item.adcode + ""))
   )
   return requestList
 }
@@ -56,7 +56,7 @@ async function catchGeoJson() {
   try {
     const requestList = await prepareGeoFiles()
     if (!requestList.length) {
-      console.log('Not need to catched geojson data.')
+      console.log("Not need to catched geojson data.")
       return
     }
     for (const reqItem of requestList) {
@@ -66,7 +66,7 @@ async function catchGeoJson() {
         )
         if (res.status === 200) {
           const data = JSON.stringify(res.data)
-          const geoPath = resolve(getGeoPath(), reqItem.adcode + '.json')
+          const geoPath = resolve(getGeoPath(), reqItem.adcode + ".json")
           await writeFile(geoPath, data)
           console.log(`Success write data to ${geoPath}`)
         }

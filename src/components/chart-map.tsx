@@ -1,12 +1,12 @@
-import { useEvent } from 'ab-hooks'
-import * as echarts from 'echarts'
-import EChartsReact from 'echarts-for-react'
-import { memo, useMemo, useState } from 'react'
-import useSWR from 'swr'
+import { useEvent } from "ab-hooks"
+import * as echarts from "echarts"
+import EChartsReact from "echarts-for-react"
+import { memo, useMemo, useState } from "react"
+import useSWR from "swr"
 
-import { getGeoJson } from '~/api'
-import { getChartOption } from '~/helpers/chart'
-import useArea from '~/hooks/area'
+import { getGeoJson } from "~/api"
+import { getChartOption } from "~/helpers/chart"
+import useArea from "~/hooks/area"
 
 type Props = {
   adcode: number
@@ -14,7 +14,7 @@ type Props = {
 }
 
 export default memo(function ChartMap({ adcode, onChange }: Props) {
-  const codeStr = adcode + ''
+  const codeStr = adcode + ""
   const { nameToAreaMap } = useArea()
   const [registeredMap, setRegisteredMap] = useState(
     new Map<string, Record<string, any>>()
@@ -44,7 +44,7 @@ export default memo(function ChartMap({ adcode, onChange }: Props) {
       click: (params: { name: string }) => {
         const area = nameToAreaMap.get(params.name)
         if (!area) {
-          console.error('找不到该区域', params.name)
+          console.error("找不到该区域", params.name)
           return
         }
         changeEvent(area.adcode)

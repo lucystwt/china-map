@@ -1,6 +1,6 @@
-import clsx from 'clsx'
+import clsx from "clsx"
 
-import styles from './navbar.module.css'
+import styles from "./navbar.module.css"
 
 type ItemType = { key: React.Key; text: string }
 

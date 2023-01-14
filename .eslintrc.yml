@@ -30,7 +30,7 @@ rules:
     - unix
   quotes:
     - error
-    - single
+    - double
   semi:
     - error
     - never

@@ -8,8 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "lint-fix": "eslint . --fix",
-    "catch-geo": "node scripts/catch-geo",
+    "lint:fix": "eslint . --fix",
     "crawl": "node scripts/crawl-geojson.js",
     "crawl:go": "go run scripts/crawl-geojson.go"
   },
