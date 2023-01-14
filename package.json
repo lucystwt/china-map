@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "catch-geo": "node scripts/catch-geo"
+    "catch-geo": "node scripts/catch-geo",
+    "crawl": "node scripts/crawl-geojson.js",
+    "crawl:go": "go run scripts/crawl-geojson.go"
   },
   "dependencies": {
     "ab-hooks": "^0.3.1",
